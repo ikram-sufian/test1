@@ -1,0 +1,133 @@
+Currently, as a User, I can edit the same version of the Testcase which is already executed. This is convenient for teams in companies with fewer restrictions, but it’s a risk for company is risky sectors that may get audited. For these, it’s important to ensure that once a testcase has started execution, it cannot be edited.
+
+DoD
+
+Add a global configuration under Customization → Test Repo Settings for “Restrict editing a test case version that has already been executed”.
+
+By default, the above configuration will be false ==> same behavior as today, where we allow editing a test case version that has been executed (we give user option to edit existing or create new version)
+
+If the configuration is set to true, then 
+
+Should always create a new version of the test case (i.e., not show the pop-up to allow selecting to Edit same version or Create new version)
+
+After editing, when user clicks “Sync and Close”, it should make the test case Unexecuted without any pop-up
+
+
+"name
+
+[{name: "teststep.richtext.enabled", value: "true"}]
+
+
+[{name: "test.repo.edit.enabled", value: "true"}]
+
+[{"name":"teststep.richtext.enabled","value":"false"}]
+
+[{"name":"execution.testcase.edit","value":"false"}]
+http://localhost:8080/flex/services/rest/v3/admin/preferences/
+
+http://localhost:8080/flex/services/rest/v3/admin/preference?key=execution.testcase.edit
+
+
+1)keep current version
+
+(put Service call when testcase is updated)
+http://localhost:8080/flex/services/rest/v3/testcase/54361
+updateTestcase()
+
+2)createnewversion
+(Post service call when click on CreateNewVersion)http://localhost:8080/flex/services/rest/v3/testcase/createnewversion/54363
+updateTestcase()
+
+3)KeepExecutionStatus
+(put Service call when click on KeepExecutionStatus)  
+http://localhost:8080/flex/services/rest/v3/execution/selective/sync/testcase  selectiveSyncTestcase()
+
+4)
+(put Service call when click on ResetToUnExecuted)  
+http://localhost:8080/flex/services/rest/v3/execution/selective/sync/testcase  selectiveSyncTestcase()
+ http://localhost:8080/flex/services/rest/v3/execution/7?status=10&testerid=1&allExecutions=false&includeanyoneuser=true
+	updateExecutionDetails()
+
+
+
+
+
+(put Service call when testcase is updated)  
+http://localhost:8080/flex/services/rest/v3/testcase/54361
+updateTestcase()
+
+
+(put Service call when click on KeepExecutionStatus)  
+http://localhost:8080/flex/services/rest/v3/execution/selective/sync/testcase
+
+
+(put Service call when click on ResetToUnExecuted)  
+http://localhost:8080/flex/services/rest/v3/execution/selective/sync/testcase
+ http://localhost:8080/flex/services/rest/v3/execution/7?status=10&testerid=1&allExecutions=false&includeanyoneuser=true
+
+
+{"releaseId":"1","testcaseId":54355,"changeBy":1,"rtsId":14,"markAsNotExecuted":false,"statusUpdate":false}
+(put)http://localhost:8080/flex/services/rest/v3/execution/selective/sync/testcase
+
+
+
+Constants.EXECUTION_TESTCASE_EDITABLED
+com.thed.Constants.
+
+if(!isValidPreference) {
+				throw new IllegalArgumentException("Please provide a valid Priority ");
+			}
+
+            boolean isNodeAccessRestricted = nodeAccessRestricted == null ? true : Boolean.valueOf(nodeAccessRestricted.getValue());
+
+
+
+(put Service call when click on KeepExecutionStatus) 
+
+adminPreferencesFacade.getPreference(key);
+@Autowired
+    @Qualifier("adminPreferencesFacade")
+    private AdminPreferencesFacade adminPreferencesFacade;
+
+if (testCaseLinkId == null) {
+			throw new ZephyrRestException("testCaseLinkId is mandatory", Status.BAD_REQUEST);
+		}
+
+                    AdminPreferencesFacade baseDao = (AdminPreferencesFacade) SpringUtil.getBean("dao");
+
+
+Preference preferenceObj = adminPreferencesFacade.getPreference(Constants.EXECUTION_TESTCASE_EDITABLED);
+            boolean isExecutionTestCaseEditable = preferenceObj == null ? true : Boolean.valueOf(preferenceObj.getValue());
+
+            if (isExecutionTestCaseEditable) {
+                throw new ZephyrRestException(UNKNOWN_ERROR, Status.INTERNAL_SERVER_ERROR);
+            }
+
+
+/*
+
+            Preference preferenceObj = adminPreferencesFacade.getPreference(Constants.EXECUTION_TESTCASE_EDITABLED);
+            boolean isExecutionTestCaseEditable = preferenceObj == null ? true : Boolean.valueOf(preferenceObj.getValue());
+            boolean isTestCaseAlreadyExecuted=false;
+
+            if ( isTestCaseAlreadyExecuted && !isExecutionTestCaseEditable) {
+                throw new ZephyrRestException(UNKNOWN_ERROR, Status.INTERNAL_SERVER_ERROR);
+            }
+*/
+TestCaserVersionDaoHibernate.java
+
+shouldCreateNewVersion
+
+
+preferenceDao
+
+ApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+		agentFacade = (AgentFacade) applicationContext.getBean("agentFacade");
+
+
+
+
+                   // boolean isExecuted=(rtsObj==null || rtsObj.getLastTestResult()==null)?true:(rtsObj.getLastTestResult().getExecutionStatus().equals("0")?false:true);
+
+                  //  PreferenceDao prefDao=  (PreferenceDao) SpringUtil.getBean("preferenceDao");
+
