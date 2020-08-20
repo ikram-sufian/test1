@@ -7,7 +7,7 @@ Session session = getCurrentSession();
 		return testcaseReleaseMapping;
 
 
-
+tttt
 
 #########################################################################
 /*public TestcaseReleaseProjectMapping getTestcaseReleaseProjectMappingByTestIdTemp(Long testcaseId,List<Long> releaseIdList) {
