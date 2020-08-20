@@ -1,0 +1,64 @@
+Session session = getCurrentSession();
+		TestcaseReleaseProjectMapping  testcaseReleaseMapping = (TestcaseReleaseProjectMapping)session.get(TestcaseReleaseProjectMapping.class,mappingId);
+		if (testcaseReleaseMapping == null) {
+            log.warn("uh oh, TestcaseReleaseProjectMapping with id '" + mappingId + "' not found...");
+            throw new ObjectRetrievalFailureException(Cycle.class, mappingId);
+        }
+		return testcaseReleaseMapping;
+
+
+
+
+#########################################################################
+/*public TestcaseReleaseProjectMapping getTestcaseReleaseProjectMappingByTestIdTemp(Long testcaseId,List<Long> releaseIdList) {
+        String hql = " from TestcaseReleaseProjectMapping where testcaseId = :testcaseId and releaseId in (:releaseIdList)";
+        Session currentSession = getCurrentSession();
+        Query createQuery = currentSession.createQuery(hql);
+        createQuery.setParameter("testcaseId", testcaseId);
+        createQuery.setParameterList("releaseIdList", releaseIdList);
+        List list = createQuery.list();
+        TestcaseReleaseProjectMapping testcaseReleaseProjectMapping = null;
+        if(list!=null && !list.isEmpty())
+            testcaseReleaseProjectMapping = (TestcaseReleaseProjectMapping) list.get(0);
+        return testcaseReleaseProjectMapping;
+    }*/
+
+
+public void deleteMappingForTestcaseAcrossReleases(Long testcaseId, List<Long> releaseIdList){
+        if(!releaseIdList.isEmpty() && testcaseId != null){
+            String hql = " from TestcaseReleaseProjectMapping where testcaseId = :testcaseId and releaseId in (:releaseIdList)";
+            Session currentSession = getCurrentSession();
+            Query createQuery = currentSession.createQuery(hql);
+            createQuery.setParameter("testcaseId", testcaseId);
+            createQuery.setParameterList("releaseIdList", releaseIdList);
+            List<TestcaseReleaseProjectMapping> testcaseReleaseProjectMappingList = createQuery.list();
+            if(testcaseReleaseProjectMappingList != null && !testcaseReleaseProjectMappingList.isEmpty()) {
+
+                testcaseReleaseProjectMappingList.stream().forEach(testcaseReleaseProjectMapping -> {
+                    currentSession.delete(testcaseReleaseProjectMapping);
+                        });
+            }
+            currentSession.flush();
+           // System.out.print("delete testcase_release_project_map");
+            //add a default entry with release -1 if all releases are deleted
+        }
+
+    }
+
+
+tcr_catalog_tree_testcase
+
+
+
+
+@Override
+	public void deleteAll(List<Long> userTokens) {
+		String hql = "delete from UserToken ut where id in (:userTokens)";
+		Query query = getCurrentSession().createQuery(hql).setParameterList("userTokens", userTokens);
+		deleteInChunks(query,"userTokens",userTokens);
+	}
+
+
+Hibernate4DaoSupport
+
+BaseDaoHibernate
