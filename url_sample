@@ -1,0 +1,41 @@
+https://zephyrdocs.atlassian.net/wiki/spaces/ZE/overview
+https://zephyr67.docs.apiary.io/#reference
+
+https://us02web.zoom.us/j/89240812320?pwd=TnQ2NlJrMEdJRWQwdllMZXZrMCtLQT09
+
+https://play.planningpoker.com/play/game/vdWSq5tzEDWw9rXz6Cy04y9cio1cvaDZ
+
+
+https://meetings.ringcentral.com/j/1498307475
+
+DB Endpoint: zs-oracle.c4n7zxvdu2ao.ap-southeast-1.rds.amazonaws.comPort 1521Password: sdlkfhs23yeaQ1243
+mvn clean install -DskipTests  -Poracle krk build kroge to oracel ki profil select h jgyi
+
+
+http://zs-oracle.c4n7zxvdu2ao.ap-southeast-1.rds.amazonaws.com
+
+
+http://qaoracle.yourzephyr.com/flex/html5/tcr/1;treeId=1;testcaseId=1;viewType=list;pageSize=50;pageView=folder;offset=0;currentIndex=1;usageHistoryGridSize=50
+
+qtpl0066@qtpl0066:~$ curl -XDELETE 'http://localhost:9200/*
+qtpl0066@qtpl0066:~$ sudo apt install curl
+
+
+
+###############create new oracle database #################
+1)run below comand in oracle command prompt
+
+create user itcc_abhii_1 identified by itcc_abhii_1;
+grant connect to itcc_abhii_1;
+grant create table to itcc_abhii_1;
+grant create trigger to itcc_abhii_1;
+grant create sequence to itcc_abhii_1;
+grant create session to itcc_abhii_1;
+grant create view to itcc_abhii_1;
+GRANT CONNECT, RESOURCE, DBA TO itcc_abhii_1;
+
+2.)uncomment oracle related properties and comment rest of database properties
+3.)Run below command in terminal
+/home/qtpl0066/zephyr/soft/apache-ant-1.9.6/bin/ant populateStartupData
+
+
