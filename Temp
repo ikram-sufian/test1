@@ -1,0 +1,29 @@
+(System Config Update)  
+ auditData.append("Mail Server Details has been Updated by <strong>").append(userName).append("</strong> Updated data:").
+	  .append("host Name:<strong>").append(newList.get(0).getValue()).append("</strong>,")
+	  .append("port:<strong>").append(newList.get(1).getValue()).append("</strong>,")
+	  .append("mailUser Name:<strong>").append(newList.get(2).getValue()).append("</strong>");
+
+/*auditData.append("{\"hostName\":").append(newList.get(0).getValue())
+                    .append(",\"port\":").append(newList.get(1).getValue())
+                    .append(",\"mailUsername\":").append(newList.get(2).getValue())
+                    .append(",\"message\":\"Mail Server Details Updated\"}");*/
+
+
+
+
+
+{"treeId":<tcrCatalogTreeId>,"testCaseIds":<testCaseIds>,"folderName":<tcrCatalogTreeName>,"parentFolderName":<parentTcrCatalogTreeName>,"projectName":<projectName>,"releaseName":<releaseName>,"message":"Test Case Tree is changeOwnership"} - 
+The folder {tcrCatalogTreeName} (tree ID: {tcrCatalogTreeId}) containing test cases {testCaseIds} has been moved to the folder {parentTcrCatalogTreeName}. Project: {projectName}; release: {releaseName}.
+
+
+Test folder <strong>p1</strong> (tree ID: <strong>124</strong>) containing test cases <strong>271,272,273,274,275</strong>) has been moved to the Project: <strong>Global Test Repository</strong>); release: <strong>Global Test Repository</strong>).
+
+
+Test folder <strong>s1</strong> (tree ID: <strong>130</strong>) containing test cases <strong>321,319,320</strong>) has been moved to the folder <strong>movingFF</strong>. Project: <strong>Global Test Repository</strong>); release: <strong>Global Test Repository</strong>).
+
+modify by ikram
+
+
+
+
